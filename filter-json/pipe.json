@@ -1,12 +1,24 @@
 {
-    "name": "filter-json",
-    "version": "0.1.0",
-    "description": "Filter NDJSON streams by keyword. Lightweight jq alternative for Flux Protocol pipelines.",
-    "author": "takakix2",
-    "license": "MIT",
-    "runtime": "python3",
-    "entry": "filter-json",
-    "tags": ["filter", "json", "official"],
-    "min_hsh_version": "0.1.0",
-    "usage": "flux-eye -p . | filter-json --keyword \".rs\""
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "filter-json",
+  "name": "filter-json",
+  "bin_name": "filter-json",
+  "source": "filter-json/filter-json",
+  "version": "0.1.0",
+  "description": "Filters an NDJSON stream by keyword across all fields, or one named field. A lightweight jq stand-in for Flux pipelines.",
+  "usage": "flux-eye . | filter-json --keyword rust",
+  "author": "takakix2",
+  "license": "MIT",
+  "runtime": "python",
+  "tags": [
+    "filter",
+    "json",
+    "official"
+  ],
+  "min_hsh_version": "0.1.0",
+  "input": "ndjson",
+  "output": "ndjson",
+  "category": "transform",
+  "verbs": [],
+  "notes": "transform-kind: this pipe consumes a Flux NDJSON stream on stdin. `verbs` is empty because hermes cannot bind a transform yet -- `register_verb` (hsh-hermes/src/stream/mod.rs) dispatches on the argument types alone and ignores `kind`, so every verb it registers is a *source* (`from_command_inproc`). Declaring one here would bind filter-json as a constructor and run it with no stdin: recognised, highlighted, completed -- and broken. That is exactly the \"looks supported but isn't\" failure hsh removed in 7047377. Until hermes grows transform verbs (sugar over the existing `.pipe_to`, which works today), reach it as `<source>.pipe_to(\"filter-json\")` or as a plain command in a shell pipeline."
 }

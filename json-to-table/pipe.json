@@ -1,12 +1,24 @@
 {
-    "name": "json-to-table",
-    "version": "0.1.0",
-    "description": "Render NDJSON streams as formatted ASCII tables. Human-readable output for Flux Protocol data.",
-    "author": "takakix2",
-    "license": "MIT",
-    "runtime": "python3",
-    "entry": "json-to-table",
-    "tags": ["display", "table", "official"],
-    "min_hsh_version": "0.1.0",
-    "usage": "cat data.ndjson | json-to-table"
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "json-to-table",
+  "name": "json-to-table",
+  "bin_name": "json-to-table",
+  "source": "json-to-table/json-to-table",
+  "version": "0.1.0",
+  "description": "Renders an NDJSON stream as a formatted ASCII table, collecting columns from the keys it sees. Human-readable end of a pipeline.",
+  "usage": "flux-eye . | json-to-table",
+  "author": "takakix2",
+  "license": "MIT",
+  "runtime": "python",
+  "tags": [
+    "display",
+    "table",
+    "official"
+  ],
+  "min_hsh_version": "0.1.0",
+  "input": "ndjson",
+  "output": "ndjson",
+  "category": "transform",
+  "verbs": [],
+  "notes": "transform-kind: this pipe consumes a Flux NDJSON stream on stdin. `verbs` is empty because hermes cannot bind a transform yet -- `register_verb` (hsh-hermes/src/stream/mod.rs) dispatches on the argument types alone and ignores `kind`, so every verb it registers is a *source* (`from_command_inproc`). Declaring one here would bind json-to-table as a constructor and run it with no stdin: recognised, highlighted, completed -- and broken. That is exactly the \"looks supported but isn't\" failure hsh removed in 7047377. Until hermes grows transform verbs (sugar over the existing `.pipe_to`, which works today), reach it as `<source>.pipe_to(\"json-to-table\")` or as a plain command in a shell pipeline."
 }

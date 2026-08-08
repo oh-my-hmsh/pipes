@@ -1,12 +1,33 @@
 {
-    "name": "flux-eye",
-    "version": "0.1.0",
-    "description": "High-speed filesystem scanner. Streams directory structure as Flux Protocol NDJSON signals.",
-    "author": "takakix2",
-    "license": "MIT",
-    "runtime": "binary",
-    "entry": "flux-eye",
-    "tags": ["filesystem", "scanner", "official"],
-    "min_hsh_version": "0.1.0",
-    "usage": "flux-eye -p ~/project"
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "flux-eye",
+  "name": "flux-eye",
+  "bin_name": "flux-eye",
+  "source": "flux-eye/flux-eye",
+  "version": "0.1.0",
+  "description": "High-speed filesystem scanner. Streams directory structure as Flux NDJSON.",
+  "usage": "flux-eye ~/project --detail",
+  "author": "takakix2",
+  "license": "MIT",
+  "runtime": "binary",
+  "tags": [
+    "filesystem",
+    "scanner",
+    "official"
+  ],
+  "min_hsh_version": "0.1.0",
+  "verbs": [
+    {
+      "verb": "feye",
+      "kind": "source",
+      "template": "flux-eye {path} --detail",
+      "args": [
+        {
+          "name": "path",
+          "type": "path"
+        }
+      ],
+      "output": "line"
+    }
+  ]
 }

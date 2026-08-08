@@ -1,12 +1,37 @@
 {
-    "name": "flux-grep",
-    "version": "0.1.0",
-    "description": "Fast signal extraction from NDJSON streams. Filter and search structured data at speed.",
-    "author": "takakix2",
-    "license": "MIT",
-    "runtime": "binary",
-    "entry": "flux-grep",
-    "tags": ["search", "filter", "official"],
-    "min_hsh_version": "0.1.0",
-    "usage": "flux-eye -p . | flux-grep \"TODO\""
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "flux-grep",
+  "name": "flux-grep",
+  "bin_name": "flux-grep",
+  "source": "flux-grep/flux-grep",
+  "version": "3.0.0",
+  "description": "Fast signal extraction from NDJSON streams. Filter and search structured data at speed.",
+  "usage": "flux-grep TODO ~/project",
+  "author": "takakix2",
+  "license": "MIT",
+  "runtime": "binary",
+  "tags": [
+    "search",
+    "filter",
+    "official"
+  ],
+  "min_hsh_version": "0.1.0",
+  "verbs": [
+    {
+      "verb": "fgr",
+      "kind": "source",
+      "template": "flux-grep {pattern} {path}",
+      "args": [
+        {
+          "name": "pattern",
+          "type": "str"
+        },
+        {
+          "name": "path",
+          "type": "path"
+        }
+      ],
+      "output": "line"
+    }
+  ]
 }
