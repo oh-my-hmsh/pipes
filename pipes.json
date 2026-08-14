@@ -8,7 +8,7 @@
             "description": "High-speed filesystem scanner. Streams directory structure as Flux Protocol signals.",
             "author": "takakix2",
             "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hsh/pipes",
+            "repo": "oh-my-hmsh/pipes",
             "bin_name": "flux-eye",
             "tags": [
                 "filesystem",
@@ -23,7 +23,7 @@
             "description": "Fast signal extraction from NDJSON streams. Filter and search structured data at speed.",
             "author": "takakix2",
             "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hsh/pipes",
+            "repo": "oh-my-hmsh/pipes",
             "bin_name": "flux-grep",
             "tags": [
                 "search",
@@ -38,7 +38,7 @@
             "description": "Universal format converter. Converts between NDJSON, Markdown, CSV, YAML, and JSON.",
             "author": "takakix2",
             "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hsh/pipes",
+            "repo": "oh-my-hmsh/pipes",
             "bin_name": "flux-render",
             "tags": [
                 "converter",
@@ -53,7 +53,7 @@
             "description": "Filter NDJSON streams by keyword. Lightweight jq alternative for Flux Protocol pipelines.",
             "author": "takakix2",
             "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hsh/pipes",
+            "repo": "oh-my-hmsh/pipes",
             "bin_name": "filter-json",
             "tags": [
                 "filter",
@@ -68,7 +68,7 @@
             "description": "Render NDJSON streams as formatted ASCII tables. Human-readable output for Flux Protocol data.",
             "author": "takakix2",
             "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hsh/pipes",
+            "repo": "oh-my-hmsh/pipes",
             "bin_name": "json-to-table",
             "tags": [
                 "display",
