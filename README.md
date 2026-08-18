@@ -1,21 +1,28 @@
-# 🔧 Oh My hsh — Pipes
+# 🔧 Oh My hmsh — Pipes
 
-Community pipes for the [hsh](https://github.com/takakix2/hsh) shell ecosystem.
+Community pipes for [**hmsh**](https://hsh.navii.online), the Hermes shell.
 
 All pipes follow the **Flux Protocol v1** — they read and/or write NDJSON on stdin/stdout, making them composable with each other and standard Unix tools.
 
 ## Installation
 
 ```bash
-hsh pipe install flux-render
-hsh pipe install filter-json
+hmsh pipe install flux-render
+hmsh pipe install filter-json
 ```
 
-Or install directly from this repository:
+Or install directly from a repository:
 
 ```bash
-hsh pipe install oh-my-hsh/pipes
+hmsh pipe install oh-my-hmsh/pipes
 ```
+
+`hmsh pipe list` shows what you have installed.
+
+> Pipes belong to **hmsh**, not to `hsh`. `hsh` is the POSIX/bash-compatible
+> shell and deliberately ships without a package manager — there is no
+> `hsh pipe` command; on that side a pipe is just a binary on your `PATH`.
+> `hm` and `hsh-hermes` also work; they are aliases for `hmsh`.
 
 ## Available Pipes
 
