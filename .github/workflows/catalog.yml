@@ -1,0 +1,19 @@
+# 🚨 カタログ（`pipes.json`）は**生成物**。手で編集すると、ここで落ちる。
+#
+# ⭐ なぜ機械が守るのか: 手書きだった間に 3 つ壊れていた（2026-08-19 実測）——
+#   ①載っているのに実体が無い「幽霊」2 件 ②同じ description が実体と別の文
+#   ③複製が別リポにも在り、org 改名が片方にしか当たっていなかった。
+# ⚠️ **規約に書くだけでは守られなかった**ので、PR の手前で撃つ。
+name: catalog
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: カタログが実体と一致しているか
+        run: ./build-catalog.py --check

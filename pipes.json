@@ -1,81 +1,92 @@
 {
-    "$schema": "https://oh-my-hsh.navii.online/schemas/pipes-v1.json",
-    "version": 1,
-    "pipes": [
-        {
-            "id": "flux-eye",
-            "name": "flux-eye",
-            "description": "High-speed filesystem scanner. Streams directory structure as Flux Protocol signals.",
-            "author": "takakix2",
-            "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hmsh/pipes",
-            "bin_name": "flux-eye",
-            "tags": [
-                "filesystem",
-                "scanner",
-                "official"
-            ],
-            "min_hsh_version": "0.1.0"
-        },
-        {
-            "id": "flux-grep",
-            "name": "flux-grep",
-            "description": "Fast signal extraction from NDJSON streams. Filter and search structured data at speed.",
-            "author": "takakix2",
-            "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hmsh/pipes",
-            "bin_name": "flux-grep",
-            "tags": [
-                "search",
-                "filter",
-                "official"
-            ],
-            "min_hsh_version": "0.1.0"
-        },
-        {
-            "id": "flux-render",
-            "name": "flux-render",
-            "description": "Universal format converter. Converts between NDJSON, Markdown, CSV, YAML, and JSON.",
-            "author": "takakix2",
-            "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hmsh/pipes",
-            "bin_name": "flux-render",
-            "tags": [
-                "converter",
-                "format",
-                "official"
-            ],
-            "min_hsh_version": "0.1.0"
-        },
-        {
-            "id": "filter-json",
-            "name": "filter-json",
-            "description": "Filter NDJSON streams by keyword. Lightweight jq alternative for Flux Protocol pipelines.",
-            "author": "takakix2",
-            "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hmsh/pipes",
-            "bin_name": "filter-json",
-            "tags": [
-                "filter",
-                "json",
-                "official"
-            ],
-            "min_hsh_version": "0.1.0"
-        },
-        {
-            "id": "json-to-table",
-            "name": "json-to-table",
-            "description": "Render NDJSON streams as formatted ASCII tables. Human-readable output for Flux Protocol data.",
-            "author": "takakix2",
-            "author_url": "https://github.com/takakix2",
-            "repo": "oh-my-hmsh/pipes",
-            "bin_name": "json-to-table",
-            "tags": [
-                "display",
-                "table",
-                "official"
-            ],
-            "min_hsh_version": "0.1.0"
-        }
-    ]
+  "version": 1,
+  "pipes": [
+    {
+      "id": "filter-json",
+      "name": "filter-json",
+      "version": "0.1.0",
+      "description": "Filters an NDJSON stream by keyword across all fields, or one named field. A lightweight jq stand-in for Flux pipelines.",
+      "author": "takakix2",
+      "bin_name": "filter-json",
+      "runtime": "python",
+      "usage": "flux-eye . | filter-json --keyword rust",
+      "license": "MIT",
+      "tags": [
+        "filter",
+        "json",
+        "official"
+      ],
+      "min_hsh_version": "0.1.0"
+    },
+    {
+      "id": "flux-eye",
+      "name": "flux-eye",
+      "version": "0.1.0",
+      "description": "High-speed filesystem scanner. Streams directory structure as Flux NDJSON.",
+      "author": "takakix2",
+      "bin_name": "flux-eye",
+      "runtime": "binary",
+      "usage": "flux-eye ~/project --detail",
+      "license": "MIT",
+      "tags": [
+        "filesystem",
+        "scanner",
+        "official"
+      ],
+      "min_hsh_version": "0.1.0"
+    },
+    {
+      "id": "flux-grep",
+      "name": "flux-grep",
+      "version": "3.0.0",
+      "description": "Fast signal extraction from NDJSON streams. Filter and search structured data at speed.",
+      "author": "takakix2",
+      "bin_name": "flux-grep",
+      "runtime": "binary",
+      "usage": "flux-grep TODO ~/project",
+      "license": "MIT",
+      "tags": [
+        "search",
+        "filter",
+        "official"
+      ],
+      "min_hsh_version": "0.1.0"
+    },
+    {
+      "id": "flux-render",
+      "name": "flux-render",
+      "version": "0.1.0",
+      "description": "Universal format converter. Renders Flux NDJSON as JSON, Markdown, CSV or YAML (and back) -- the interchange layer with the outside world.",
+      "author": "takakix2",
+      "bin_name": "flux-render",
+      "runtime": "python",
+      "usage": "flux-eye /vault | flux-render --to md",
+      "license": "MIT",
+      "tags": [
+        "converter",
+        "format",
+        "markdown",
+        "csv",
+        "official"
+      ],
+      "min_hsh_version": "0.1.0"
+    },
+    {
+      "id": "json-to-table",
+      "name": "json-to-table",
+      "version": "0.1.0",
+      "description": "Renders an NDJSON stream as a formatted ASCII table, collecting columns from the keys it sees. Human-readable end of a pipeline.",
+      "author": "takakix2",
+      "bin_name": "json-to-table",
+      "runtime": "python",
+      "usage": "flux-eye . | json-to-table",
+      "license": "MIT",
+      "tags": [
+        "display",
+        "table",
+        "official"
+      ],
+      "min_hsh_version": "0.1.0"
+    }
+  ]
 }

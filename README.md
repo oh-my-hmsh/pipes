@@ -49,6 +49,17 @@ for line in sys.stdin:
 
 Save it, `chmod +x`, and pipe it: `flux-eye -p . | ./my-pipe`
 
+**To get it listed here**, fork this repository, add `<your-pipe>/` with a `pipe.json`
+manifest, and open a pull request — that directory is the whole change. `pipes.json` is
+**generated** from the manifests by `./build-catalog.py`, so there is nothing else to update.
+CI rejects a hand-edited catalog.
+
+**Prefer to keep it in your own repository?** You do not need to be listed:
+
+```bash
+hmsh pipe install <user>/<repo>
+```
+
 ## License
 
 MIT
