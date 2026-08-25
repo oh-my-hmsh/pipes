@@ -10,6 +10,7 @@
   "usage": "flux-write /path/to/file --mode overwrite",
   "platforms": [
     "linux-x86_64",
-    "windows-x86_64"
+    "windows-x86_64",
+    "macos-aarch64"
   ]
 }

@@ -54,6 +54,7 @@
   "usage": "flux-read /path/to/file --budget 2000",
   "platforms": [
     "linux-x86_64",
-    "windows-x86_64"
+    "windows-x86_64",
+    "macos-aarch64"
   ]
 }

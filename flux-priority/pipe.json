@@ -10,6 +10,7 @@
   "usage": "flux-eye . --detail | flux-priority --since 24h",
   "platforms": [
     "linux-x86_64",
-    "windows-x86_64"
+    "windows-x86_64",
+    "macos-aarch64"
   ]
 }

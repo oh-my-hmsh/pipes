@@ -36,7 +36,8 @@
       "min_hsh_version": "0.1.0",
       "platforms": [
         "linux-x86_64",
-        "windows-x86_64"
+        "windows-x86_64",
+        "macos-aarch64"
       ]
     },
     {
@@ -47,7 +48,8 @@
       "usage": "flux-find \"query\" /path --limit 50",
       "platforms": [
         "linux-x86_64",
-        "windows-x86_64"
+        "windows-x86_64",
+        "macos-aarch64"
       ]
     },
     {
@@ -68,7 +70,8 @@
       "min_hsh_version": "0.1.0",
       "platforms": [
         "linux-x86_64",
-        "windows-x86_64"
+        "windows-x86_64",
+        "macos-aarch64"
       ]
     },
     {
@@ -79,7 +82,8 @@
       "usage": "flux-eye . --detail | flux-priority --since 24h",
       "platforms": [
         "linux-x86_64",
-        "windows-x86_64"
+        "windows-x86_64",
+        "macos-aarch64"
       ]
     },
     {
@@ -90,7 +94,8 @@
       "usage": "flux-read /path/to/file --budget 2000",
       "platforms": [
         "linux-x86_64",
-        "windows-x86_64"
+        "windows-x86_64",
+        "macos-aarch64"
       ]
     },
     {
@@ -120,7 +125,8 @@
       "usage": "flux-write /path/to/file --mode overwrite",
       "platforms": [
         "linux-x86_64",
-        "windows-x86_64"
+        "windows-x86_64",
+        "macos-aarch64"
       ]
     },
     {
