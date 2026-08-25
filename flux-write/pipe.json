@@ -4,6 +4,7 @@
   "name": "flux-write",
   "bin_name": "flux-write",
   "description": "File writer for the Flux series. Overwrite, append, replace a line range, move or mkdir from one command.",
+  "runtime": "binary",
   "verbs": [],
   "notes": "`verbs` is empty ON PURPOSE, not yet-to-be-written. `.fwrite` was declined on 2026-07-04: stream-to-file is already served by `.save` / `.append` / `.tee`, which are pure Rust and work on iOS, whereas flux-write depends on fork and does not -- so a verb here would be strictly worse than the builtin it duplicates. Its distinctive modes (replace / move / mkdir) are file operations rather than a stream sink, so they do not fit the verb shape at all. Still a first-class pipe as a plain command: `flux-write PATH --mode append`.",
   "category": "sink",

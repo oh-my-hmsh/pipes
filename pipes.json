@@ -45,6 +45,7 @@
       "name": "flux-find",
       "description": "Fuzzy filename finder. Streams matches as Flux NDJSON.",
       "bin_name": "flux-find",
+      "runtime": "binary",
       "usage": "flux-find \"query\" /path --limit 50",
       "platforms": [
         "linux-x86_64",
@@ -79,6 +80,7 @@
       "name": "flux-priority",
       "description": "Relevance ranker. Scores files by mtime, extension, path depth, size and an interest profile, then emits them in priority order as Flux NDJSON.",
       "bin_name": "flux-priority",
+      "runtime": "binary",
       "usage": "flux-eye . --detail | flux-priority --since 24h",
       "platforms": [
         "linux-x86_64",
@@ -91,6 +93,7 @@
       "name": "flux-read",
       "description": "Token-budgeted file reader. Streams file contents as Flux NDJSON.",
       "bin_name": "flux-read",
+      "runtime": "binary",
       "usage": "flux-read /path/to/file --budget 2000",
       "platforms": [
         "linux-x86_64",
@@ -122,6 +125,7 @@
       "name": "flux-write",
       "description": "File writer for the Flux series. Overwrite, append, replace a line range, move or mkdir from one command.",
       "bin_name": "flux-write",
+      "runtime": "binary",
       "usage": "flux-write /path/to/file --mode overwrite",
       "platforms": [
         "linux-x86_64",

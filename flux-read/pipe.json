@@ -4,6 +4,7 @@
   "name": "flux-read",
   "bin_name": "flux-read",
   "description": "Token-budgeted file reader. Streams file contents as Flux NDJSON.",
+  "runtime": "binary",
   "verbs": [
     {
       "verb": "fread",

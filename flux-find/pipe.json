@@ -4,6 +4,7 @@
   "name": "flux-find",
   "bin_name": "flux-find",
   "description": "Fuzzy filename finder. Streams matches as Flux NDJSON.",
+  "runtime": "binary",
   "verbs": [
     {
       "verb": "ffd",
