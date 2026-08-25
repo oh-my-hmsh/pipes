@@ -1,0 +1,31 @@
+{
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "flux-find",
+  "name": "flux-find",
+  "bin_name": "flux-find",
+  "description": "Fuzzy filename finder. Streams matches as Flux NDJSON.",
+  "verbs": [
+    {
+      "verb": "ffd",
+      "kind": "source",
+      "template": "flux-find {query} {path}",
+      "args": [
+        {
+          "name": "query",
+          "type": "str"
+        },
+        {
+          "name": "path",
+          "type": "path"
+        }
+      ],
+      "output": "line"
+    }
+  ],
+  "category": "source",
+  "usage": "flux-find \"query\" /path --limit 50",
+  "platforms": [
+    "linux-x86_64",
+    "windows-x86_64"
+  ]
+}

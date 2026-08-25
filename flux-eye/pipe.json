@@ -3,7 +3,6 @@
   "id": "flux-eye",
   "name": "flux-eye",
   "bin_name": "flux-eye",
-  "source": "flux-eye/flux-eye",
   "version": "0.1.0",
   "description": "High-speed filesystem scanner. Streams directory structure as Flux NDJSON.",
   "usage": "flux-eye ~/project --detail",
@@ -29,5 +28,10 @@
       ],
       "output": "line"
     }
+  ],
+  "category": "source",
+  "platforms": [
+    "linux-x86_64",
+    "windows-x86_64"
   ]
 }

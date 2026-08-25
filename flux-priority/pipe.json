@@ -1,0 +1,15 @@
+{
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "flux-priority",
+  "name": "flux-priority",
+  "bin_name": "flux-priority",
+  "description": "Relevance ranker. Scores files by mtime, extension, path depth, size and an interest profile, then emits them in priority order as Flux NDJSON.",
+  "verbs": [],
+  "notes": "`verbs` is empty ON PURPOSE, not yet-to-be-written. `.rank` was added (hsh 8ffaa9c) and removed again on 2026-07-05: flux-priority is orchestration-shaped -- it needs a curated JSON interest profile, a scoring worldview, and the context of 'hot with respect to what' -- while the f<verb> family is mechanical, stateless and neutral. The practical part (recency order) is reproducible with existing combinators: feye('.').p_json().sort_by('modified').tail(N). The distinctive part (interest personalisation) belongs to Ariadne. Still a first-class pipe as a plain command: `flux-priority --since 24h`.",
+  "category": "transform",
+  "usage": "flux-eye . --detail | flux-priority --since 24h",
+  "platforms": [
+    "linux-x86_64",
+    "windows-x86_64"
+  ]
+}

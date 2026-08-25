@@ -1,0 +1,59 @@
+{
+  "$schema": "https://oh-my-hsh.navii.online/schemas/pipe-v1.json",
+  "id": "flux-read",
+  "name": "flux-read",
+  "bin_name": "flux-read",
+  "description": "Token-budgeted file reader. Streams file contents as Flux NDJSON.",
+  "verbs": [
+    {
+      "verb": "fread",
+      "kind": "source",
+      "template": "flux-read {path}",
+      "args": [
+        {
+          "name": "path",
+          "type": "path"
+        }
+      ],
+      "output": "line"
+    },
+    {
+      "verb": "fread",
+      "kind": "source",
+      "template": "flux-read {path} --budget {budget}",
+      "args": [
+        {
+          "name": "path",
+          "type": "path"
+        },
+        {
+          "name": "budget",
+          "type": "int"
+        }
+      ],
+      "output": "line"
+    },
+    {
+      "verb": "fread",
+      "kind": "source",
+      "template": "flux-read {path} --budget {budget}",
+      "args": [
+        {
+          "name": "path",
+          "type": "path"
+        },
+        {
+          "name": "budget",
+          "type": "str"
+        }
+      ],
+      "output": "line"
+    }
+  ],
+  "category": "source",
+  "usage": "flux-read /path/to/file --budget 2000",
+  "platforms": [
+    "linux-x86_64",
+    "windows-x86_64"
+  ]
+}

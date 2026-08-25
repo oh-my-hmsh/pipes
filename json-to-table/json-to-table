@@ -56,4 +56,16 @@ def main():
     print(f"\n({len(rows)} rows)")
 
 if __name__ == "__main__":
+    # A downstream consumer closing the pipe (`... | head`) is a normal end to a
+    # pipeline, not an error. Python sets SIGPIPE to SIG_IGN at startup, which
+    # turns it into a BrokenPipeError and prints a traceback -- and exits 1,
+    # which a consumer cannot tell apart from a real failure. Restore the
+    # default so we die quietly (141) instead.
+    # See flux-protocol spec/CLI_PROFILE_v1.md 2.1.
+    # Inside the __main__ guard only: importing this module must not change the
+    # importer's signal disposition. hasattr() because Windows has no SIGPIPE.
+    import signal
+
+    if hasattr(signal, "SIGPIPE"):
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     main()

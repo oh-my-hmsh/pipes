@@ -33,7 +33,22 @@
         "scanner",
         "official"
       ],
-      "min_hsh_version": "0.1.0"
+      "min_hsh_version": "0.1.0",
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64"
+      ]
+    },
+    {
+      "id": "flux-find",
+      "name": "flux-find",
+      "description": "Fuzzy filename finder. Streams matches as Flux NDJSON.",
+      "bin_name": "flux-find",
+      "usage": "flux-find \"query\" /path --limit 50",
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64"
+      ]
     },
     {
       "id": "flux-grep",
@@ -50,7 +65,33 @@
         "filter",
         "official"
       ],
-      "min_hsh_version": "0.1.0"
+      "min_hsh_version": "0.1.0",
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64"
+      ]
+    },
+    {
+      "id": "flux-priority",
+      "name": "flux-priority",
+      "description": "Relevance ranker. Scores files by mtime, extension, path depth, size and an interest profile, then emits them in priority order as Flux NDJSON.",
+      "bin_name": "flux-priority",
+      "usage": "flux-eye . --detail | flux-priority --since 24h",
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64"
+      ]
+    },
+    {
+      "id": "flux-read",
+      "name": "flux-read",
+      "description": "Token-budgeted file reader. Streams file contents as Flux NDJSON.",
+      "bin_name": "flux-read",
+      "usage": "flux-read /path/to/file --budget 2000",
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64"
+      ]
     },
     {
       "id": "flux-render",
@@ -70,6 +111,17 @@
         "official"
       ],
       "min_hsh_version": "0.1.0"
+    },
+    {
+      "id": "flux-write",
+      "name": "flux-write",
+      "description": "File writer for the Flux series. Overwrite, append, replace a line range, move or mkdir from one command.",
+      "bin_name": "flux-write",
+      "usage": "flux-write /path/to/file --mode overwrite",
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64"
+      ]
     },
     {
       "id": "json-to-table",

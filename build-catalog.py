@@ -25,8 +25,15 @@ OUT = ROOT / "pipes.json"
 # カタログに載せる欄。⚠️ pipe.json に無ければ**黙って省く**（空文字で埋めない
 # —— 「説明が無い」と「説明が空」は別の事実）。
 # ⚠️ `bin_name` はクライアントが**取得 URL の組み立てに使う**ので必須級。
+#
+# ⭐ `platforms` は **住所の形そのものを決める**（2026-08-25・hsh `#210` の続き）:
+#      無い  → 台に依らない物（python 等）。`<id>/<bin_name>`
+#      在る  → 焼き分けた物。`<id>/<platform>/<bin_name>[.exe]`
+#    ∴ クライアントは分岐を持たず、**カタログが形を名乗る**。
+# 🚨 これを落とすと「その pipe は無い」と「あなたの台の分は焼いていない」が**同じ 404** に
+#    化ける —— 前者を見た人は存在しない物を探しに行く。**別の事実は別に言う。**
 PASSTHROUGH = ["name", "version", "description", "author", "author_url", "bin_name",
-               "runtime", "usage", "license", "tags", "min_hsh_version"]
+               "runtime", "usage", "license", "tags", "min_hsh_version", "platforms"]
 
 
 def build() -> dict:
