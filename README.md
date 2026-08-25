@@ -54,6 +54,15 @@ manifest, and open a pull request — that directory is the whole change. `pipes
 **generated** from the manifests by `./build-catalog.py`, so there is nothing else to update.
 CI rejects a hand-edited catalog.
 
+**Shipping a compiled pipe?** Declare the faces you baked in `platforms`, and put each
+binary at `<id>/<platform>/<bin_name>`. CI runs `./check-artifacts.py`, which requires
+that every declared face actually has a binary, and that the `linux-x86_64` one is
+**statically linked** — a dynamically linked binary will not start on a glibc older than
+the one it was built against, which is not a failure the person installing it can diagnose.
+Build it with `--target x86_64-unknown-linux-musl`; that flag looks redundant when you are
+sitting at a Linux machine, and that is exactly when it goes missing. Run the script
+yourself before you publish.
+
 **Prefer to keep it in your own repository?** You do not need to be listed:
 
 ```bash

@@ -1,0 +1,25 @@
+# 🚨 配る実体を数える門。**宣言した面が在るか**と **linux 面が静的か**。
+#
+# ⭐ なぜ機械が守るのか（2026-08-26 実測）: `flux-eye/linux-x86_64` を glibc に
+#   動的リンクしたまま配っていた。musl を選んだ理由が「古い glibc の利用者では
+#   起動しない」なので、配っている物がその決定を満たしていなかった。
+# ⚠️ **原因は「その道具だから」ではない** —— 同じ回の中で windows には `--target` を
+#   付け、ネイティブの linux 面には付けなかった。`--target` はクロスコンパイルの旗に
+#   見えるので、座っている台と同じ面では冗長に見える。∴ **どの道具でも、publish の回の
+#   外で単独に焼き直せば起きる**。注意では直らないので、配る手前で数える。
+# 🚨 判定に `ldd` / `file` を使わない —— 同じ事実を別の言葉で言う道具で、
+#   片方の語彙で grep すると**違反ではなく計測不能が黙って混ざる**（実際に踏んだ）。
+#   代わりに ELF の `PT_INTERP` を直接読む。
+name: artifacts
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 宣言した面の実体が在り、linux 面が静的か
+        run: ./check-artifacts.py
