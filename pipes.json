@@ -19,6 +19,26 @@
       "min_hsh_version": "0.1.0"
     },
     {
+      "id": "flux",
+      "name": "flux",
+      "version": "0.1.0",
+      "description": "Package manager for the flux family. Fetches pipes and the declarations that turn them into dot-verbs.",
+      "author": "takakix2",
+      "bin_name": "flux",
+      "runtime": "binary",
+      "usage": "flux pipe install flux-eye",
+      "license": "MIT",
+      "tags": [
+        "manager",
+        "official"
+      ],
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64",
+        "macos-aarch64"
+      ]
+    },
+    {
       "id": "flux-eye",
       "name": "flux-eye",
       "version": "0.1.0",
