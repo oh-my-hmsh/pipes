@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""配る前に、**宣言した面の実体が在るか**と **linux 面が静的か**を数える。
+"""配る前に、**宣言した面の実体が在るか**・**linux 面が静的か**・**版を名乗れるか**を数える。
 
     ./check-artifacts.py            数えて表で出す（違反が在れば非ゼロ）
 
@@ -40,6 +40,27 @@
 それが `ldd` の言う「動的」の実体（＝起動時にどのローダーを呼ぶかの宣言）で、
 言い回しに依存せず、**成果物を実行せずに**、CI の台の loader も要らずに読める。
 
+# 🚨 版を名乗れない実体を配らない（2026-08-26 追加）
+
+利用者の `flux outdated` は「いま入っている物は配っている物と同じか」に答える。
+その根拠は **`FLUX_BUILD_ID`（実体に埋まっている git の短ハッシュ）**で、
+⭐ カタログ側の値は `build-catalog.py` が**実体から導出**する。
+
+∴ 版を名乗れない実体を配ると、カタログの `build_ids` からその面が黙って落ち、
+**利用者側では「最新です」ではなく「分からない」**になる —— 直せるのは配る側だけなので、
+ここで数える。⚠️ 版が違う面が在ること自体は**違反ではない**（下記）。
+
+## ⚠️ 面ごとに版が違うのは、正常なことも事故なこともある
+
+    flux-eye   linux だけ別   ← 意図的（`#10` で linux 面だけ musl に焼き直した）
+    flux-find  macos だけ別   ← 事故（8/26 に macos だけ焼き、他 2 面を置き去りにした）
+
+🚨 **実体だけ見ても、この 2 つは同じ顔をしている。** 区別できるのは
+「どちらのコミットが新しいか」を git に訊いたときだけで、それは**ここには無い情報**
+（配る棚は flux-tools の履歴を持っていない）。∴ **揃っているかは赤にせず、名乗るに留める。**
+⭐ 数えて見せることには意味が在る —— 現に 5 本が食い違っており、
+**訊く手段が無かったから 1 度も見えていなかった**。
+
 # 🚨 何も測らなかったときに緑を返さない
 
 母集団が空なら違反も 0 件になる —— この repo が何度も踏んでいる形。
@@ -56,18 +77,14 @@ import json
 import pathlib
 import sys
 
+from flux_artifacts import artifact_path, build_id_of, pipe_dirs
+
 ROOT = pathlib.Path(__file__).parent
 
 PT_INTERP = 3
 # 静的を要求する面。⚠️ musl は **Linux での規約**なので、他の面はここに載せない
 # （macOS / Windows は事情が違い、同じ物差しを当てると偽の赤になる）。
 MUST_BE_STATIC = {"linux-x86_64"}
-
-
-def artifact_path(pipe_dir: pathlib.Path, platform: str, bin_name: str) -> pathlib.Path:
-    """宣言した面の実体が在るべき場所。⚠️ `.exe` は Windows の面だけ。"""
-    name = f"{bin_name}.exe" if platform.startswith("windows") else bin_name
-    return pipe_dir / platform / name
 
 
 def has_interp(path: pathlib.Path) -> bool | None:
@@ -101,12 +118,16 @@ def has_interp(path: pathlib.Path) -> bool | None:
 
 
 def main() -> int:
-    examined = 0          # 実際に中を読んだ実体の数（🚨 0 なら緑にしない）
+    examined = 0          # 静的かどうかを実際に測った実体の数（🚨 0 なら緑にしない）
+    stamped = 0           # 版を実際に読めた実体の数。⚠️ examined とは別に数える ——
+                          # 静的を要求しない面も版は名乗るので、母集団が違う。
+                          # 🚨 一本化すると「版を 1 つも読まなかった」が緑に化ける。
     problems: list[str] = []
     skipped: list[str] = []
     rows: list[tuple[str, str, str]] = []
+    mixed: list[str] = []  # 面ごとに版が違った pipe（⚠️ 違反ではない・名乗るだけ）
 
-    for d in sorted(p for p in ROOT.iterdir() if p.is_dir() and not p.name.startswith(".")):
+    for d in pipe_dirs(ROOT):
         manifest = d / "pipe.json"
         if not manifest.is_file():
             skipped.append(f"{d.name}/ (pipe.json 無し)")
@@ -121,6 +142,7 @@ def main() -> int:
             problems.append(f"{d.name}: platforms が在るのに bin_name が無い（住所が組めない）")
             continue
 
+        ids: dict[str, str] = {}
         for platform in platforms:
             path = artifact_path(d, platform, bin_name)
             rel = str(path.relative_to(ROOT))
@@ -128,31 +150,59 @@ def main() -> int:
                 problems.append(f"{rel}: 宣言した面の実体が無い")
                 rows.append((rel, "🔴", "実体が無い"))
                 continue
+
+            # ⭐ 版は**全部の面**で見る（静的の検査より母集団が広い）。
+            build_id, why = build_id_of(path)
+            if build_id is None:
+                problems.append(f"{rel}: 版を名乗れない（{why}）。"
+                                f"利用者側では『最新か』が**分からない**になる")
+                rows.append((rel, "🔴", "版を名乗れない"))
+                continue
+            stamped += 1
+            ids[platform] = build_id
+
             if platform not in MUST_BE_STATIC:
-                rows.append((rel, "・", "静的を要求しない面"))
+                rows.append((rel, "・", f"{build_id} / 静的を要求しない面"))
                 continue
             examined += 1
             interp = has_interp(path)
             if interp is None:
                 problems.append(f"{rel}: ELF として読めなかった（測れていない）")
-                rows.append((rel, "🔴", "ELF として読めない"))
+                rows.append((rel, "🔴", f"{build_id} / ELF として読めない"))
             elif interp:
                 problems.append(
                     f"{rel}: 動的リンク（PT_INTERP 在り）。"
                     f"--target x86_64-unknown-linux-musl を付けて焼き直すこと")
-                rows.append((rel, "🔴", "動的リンク"))
+                rows.append((rel, "🔴", f"{build_id} / 動的リンク"))
             else:
-                rows.append((rel, "✅", "静的"))
+                rows.append((rel, "✅", f"{build_id} / 静的"))
+
+        # ⚠️ 赤にはしない（上の見出しの通り、意図と事故が同じ顔をしている）。
+        if len(set(ids.values())) > 1:
+            mixed.append(f"{d.name}: " + "  ".join(f"{p}={i}" for p, i in sorted(ids.items())))
 
     for rel, mark, note in rows:
         print(f"  {mark} {rel:<46} {note}")
     for s in skipped:
         print(f"  ・ 見ていない: {s}")
 
+    # ⭐ 名乗るだけ。「揃っていない」と「揃っている」を**見えるようにする**のが仕事で、
+    # どちらが正しいかは git を持っている人にしか決められない。
+    if mixed:
+        print(f"\n⚠️ 面ごとに版が違う pipe が {len(mixed)} 件（意図なら問題なし・"
+              f"焼き忘れなら 3 面とも焼き直すこと）:")
+        for m in mixed:
+            print(f"     {m}")
+
     # 🚨 母集団が空なら「違反なし」ではなく「測っていない」。
     if examined == 0:
         print(f"\n静的かどうかを測れた実体が 0 個でした（{'/'.join(sorted(MUST_BE_STATIC))} が 1 つも無い）。"
               f"\n違反が無いのではなく、**何も測っていません**。", file=sys.stderr)
+        return 1
+
+    if stamped == 0:
+        print("\n版を読めた実体が 0 個でした。"
+              "\n版が揃っているのではなく、**1 つも読んでいません**。", file=sys.stderr)
         return 1
 
     if problems:
@@ -161,7 +211,8 @@ def main() -> int:
             print(f"  🔴 {p}", file=sys.stderr)
         return 1
 
-    print(f"\n✅ 宣言した面の実体は全部在り、linux 面 {examined} 本とも静的です。")
+    print(f"\n✅ 宣言した面の実体は全部在り、{stamped} 本とも版を名乗り、"
+          f"linux 面 {examined} 本とも静的です。")
     return 0
 
 

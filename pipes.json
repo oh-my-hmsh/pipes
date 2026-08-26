@@ -36,7 +36,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "171145f49",
+        "windows-x86_64": "171145f49",
+        "macos-aarch64": "171145f49"
+      }
     },
     {
       "id": "flux-eye",
@@ -58,7 +63,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "a95ceb4b9",
+        "windows-x86_64": "5f08e6510",
+        "macos-aarch64": "5f08e6510"
+      }
     },
     {
       "id": "flux-find",
@@ -71,7 +81,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "348ba8925",
+        "windows-x86_64": "348ba8925",
+        "macos-aarch64": "5f08e6510"
+      }
     },
     {
       "id": "flux-grep",
@@ -93,7 +108,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "348ba8925",
+        "windows-x86_64": "348ba8925",
+        "macos-aarch64": "5f08e6510"
+      }
     },
     {
       "id": "flux-priority",
@@ -106,7 +126,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "4f9c05a7a",
+        "windows-x86_64": "4f9c05a7a",
+        "macos-aarch64": "4f9c05a7a"
+      }
     },
     {
       "id": "flux-read",
@@ -119,7 +144,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "348ba8925",
+        "windows-x86_64": "348ba8925",
+        "macos-aarch64": "5f08e6510"
+      }
     },
     {
       "id": "flux-render",
@@ -151,7 +181,12 @@
         "linux-x86_64",
         "windows-x86_64",
         "macos-aarch64"
-      ]
+      ],
+      "build_ids": {
+        "linux-x86_64": "348ba8925",
+        "windows-x86_64": "348ba8925",
+        "macos-aarch64": "5f08e6510"
+      }
     },
     {
       "id": "json-to-table",

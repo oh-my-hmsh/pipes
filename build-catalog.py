@@ -19,6 +19,8 @@ import json
 import pathlib
 import sys
 
+from flux_artifacts import artifact_path, build_id_of, pipe_dirs
+
 ROOT = pathlib.Path(__file__).parent
 OUT = ROOT / "pipes.json"
 
@@ -36,9 +38,37 @@ PASSTHROUGH = ["name", "version", "description", "author", "author_url", "bin_na
                "runtime", "usage", "license", "tags", "min_hsh_version", "platforms"]
 
 
+def build_ids_of(pipe_dir: pathlib.Path, meta: dict) -> dict[str, str]:
+    """宣言した面それぞれの build id を、**実体から読んで**返す。
+
+    🚨 **`pipe.json` に手で書く欄にしない。** そうすると同じ事実が 2 箇所に在ることになり、
+    焼き直した回に片方だけ動いて必ず腐る —— そして腐った側は「最新です」と言い続ける。
+    ⭐ ここが**導出**である限り、カタログは焼き直した瞬間に正しくなる。
+
+    ⚠️ 版が読めない面は**欄ごと落とす**（`PASSTHROUGH` と同じ作法 ——
+    「持っていない」と「空」を同じ顔にしない）。python の pipe はそもそも
+    `platforms` を名乗らないのでここに来ない。
+
+    ⭐ **揃っているかは判定しない。** 面ごとに違うのは正常なことも事故なこともあり、
+    その区別は `check-artifacts.py` の仕事（あちらは git を見られる）。ここは**運ぶだけ**。
+    """
+    platforms = meta.get("platforms")
+    bin_name = meta.get("bin_name")
+    if not platforms or not bin_name:
+        return {}
+    out = {}
+    for platform in platforms:
+        build_id, why = build_id_of(artifact_path(pipe_dir, platform, bin_name))
+        if build_id is None:
+            print(f"  ・ {pipe_dir.name} {platform}: 版を載せません（{why}）", file=sys.stderr)
+            continue
+        out[platform] = build_id
+    return out
+
+
 def build() -> dict:
     pipes = []
-    for d in sorted(p for p in ROOT.iterdir() if p.is_dir() and not p.name.startswith(".")):
+    for d in pipe_dirs(ROOT):
         manifest = d / "pipe.json"
         if not manifest.is_file():
             print(f"  skip {d.name}/ (pipe.json 無し)", file=sys.stderr)
@@ -46,6 +76,11 @@ def build() -> dict:
         meta = json.loads(manifest.read_text(encoding="utf-8"))
         entry = {"id": d.name}
         entry.update({k: meta[k] for k in PASSTHROUGH if k in meta})
+        # ⭐ **唯一、pipe.json ではなく実体から来る欄。** 利用者の `flux outdated` が
+        # 「いま入っている物は配っている物と同じか」に答えるための正本。
+        build_ids = build_ids_of(d, meta)
+        if build_ids:
+            entry["build_ids"] = build_ids
         pipes.append(entry)
     return {"version": 1, "pipes": pipes}
 
