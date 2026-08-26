@@ -17,3 +17,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: カタログが実体と一致しているか
         run: ./build-catalog.py --check
+
+      # ⭐ 宣言した面の実体が在り、linux 面が静的で、**全部が版を名乗る**か。
+      # 🚨 版を名乗れない物を配ると、利用者側で「最新か」が『分からない』に化ける
+      # —— 直せるのは配る側だけなので、手前で止める。
+      - name: 実体が在り、静的で、版を名乗るか
+        run: ./check-artifacts.py
+
+      # 🚨 指紋の計算は **2 言語に分かれている**（配る側 Python / 入れる側 Rust）。
+      # ⚠️ 食い違うと、宣言が同じでも `flux outdated` が全部を「宣言が古い」と言い続け、
+      # **入れ直しても直らない**。⭐ 初回にこれで実バグ（FNV 素数の桁）を捕まえた。
+      - name: 指紋の計算が両側で一致しているか
+        run: ./check-digest-agreement.py

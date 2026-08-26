@@ -19,7 +19,7 @@ import json
 import pathlib
 import sys
 
-from flux_artifacts import artifact_path, build_id_of, pipe_dirs
+from flux_artifacts import artifact_path, build_id_of, manifest_digest, pipe_dirs
 
 ROOT = pathlib.Path(__file__).parent
 OUT = ROOT / "pipes.json"
@@ -73,7 +73,8 @@ def build() -> dict:
         if not manifest.is_file():
             print(f"  skip {d.name}/ (pipe.json 無し)", file=sys.stderr)
             continue
-        meta = json.loads(manifest.read_text(encoding="utf-8"))
+        raw = manifest.read_bytes()
+        meta = json.loads(raw.decode("utf-8"))
         entry = {"id": d.name}
         entry.update({k: meta[k] for k in PASSTHROUGH if k in meta})
         # ⭐ **唯一、pipe.json ではなく実体から来る欄。** 利用者の `flux outdated` が
@@ -81,6 +82,12 @@ def build() -> dict:
         build_ids = build_ids_of(d, meta)
         if build_ids:
             entry["build_ids"] = build_ids
+        # ⭐ **2 本目の軸。** バイナリの版（`build_ids`）とは別に、**宣言そのもの**の指紋。
+        # 🚨 宣言だけが変わる回は普通に在る —— 実測で、`.manifests/` を触った直近
+        # 6 コミットのうち **4 回**がバイナリを 1 行も動かしていなかった。
+        # ⚠️ そのとき `build_ids` は動かないので、片方だけ見ていると
+        # **「最新です」と言いながら古い宣言を配られたまま**になる（flux-tools #12）。
+        entry["manifest_digest"] = manifest_digest(raw)
         pipes.append(entry)
     return {"version": 1, "pipes": pipes}
 

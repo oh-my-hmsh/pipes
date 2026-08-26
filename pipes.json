@@ -16,7 +16,8 @@
         "json",
         "official"
       ],
-      "min_hsh_version": "0.1.0"
+      "min_hsh_version": "0.1.0",
+      "manifest_digest": "c13822c6ac5d18a7"
     },
     {
       "id": "flux",
@@ -38,10 +39,11 @@
         "macos-aarch64"
       ],
       "build_ids": {
-        "linux-x86_64": "90b525ecc",
-        "windows-x86_64": "90b525ecc",
-        "macos-aarch64": "90b525ecc"
-      }
+        "linux-x86_64": "8601c881b",
+        "windows-x86_64": "8601c881b",
+        "macos-aarch64": "8601c881b"
+      },
+      "manifest_digest": "cff2dee212ae878a"
     },
     {
       "id": "flux-eye",
@@ -68,7 +70,8 @@
         "linux-x86_64": "f87282a33",
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
-      }
+      },
+      "manifest_digest": "bb52af79ca33c775"
     },
     {
       "id": "flux-find",
@@ -86,7 +89,8 @@
         "linux-x86_64": "f87282a33",
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
-      }
+      },
+      "manifest_digest": "8bd42ff7577175e6"
     },
     {
       "id": "flux-grep",
@@ -113,7 +117,8 @@
         "linux-x86_64": "f87282a33",
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
-      }
+      },
+      "manifest_digest": "0a38374bfe3928e0"
     },
     {
       "id": "flux-priority",
@@ -131,7 +136,8 @@
         "linux-x86_64": "f87282a33",
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
-      }
+      },
+      "manifest_digest": "3489411b2fbfea0b"
     },
     {
       "id": "flux-read",
@@ -149,7 +155,8 @@
         "linux-x86_64": "f87282a33",
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
-      }
+      },
+      "manifest_digest": "38a26aa8728b55c8"
     },
     {
       "id": "flux-render",
@@ -168,7 +175,8 @@
         "csv",
         "official"
       ],
-      "min_hsh_version": "0.1.0"
+      "min_hsh_version": "0.1.0",
+      "manifest_digest": "5325aa6e0e1531db"
     },
     {
       "id": "flux-write",
@@ -186,7 +194,8 @@
         "linux-x86_64": "f87282a33",
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
-      }
+      },
+      "manifest_digest": "bb1dc05504ea544f"
     },
     {
       "id": "json-to-table",
@@ -203,7 +212,8 @@
         "table",
         "official"
       ],
-      "min_hsh_version": "0.1.0"
+      "min_hsh_version": "0.1.0",
+      "manifest_digest": "4f3c438724638e62"
     }
   ]
 }

@@ -47,6 +47,40 @@ def artifact_path(pipe_dir: pathlib.Path, platform: str, bin_name: str) -> pathl
     return pipe_dir / platform / name
 
 
+def manifest_digest(raw: bytes) -> str:
+    """`pipe.json` の指紋。⭐ **バイト列そのものを見る**（正規化しない）。
+
+    🚨 用事は「配っている宣言と、置かれた宣言は同じ物か」であって、
+    「意味が同じか」ではない。⚠️ 正規化を挟むと、その規則が 2 実装に分かれた瞬間に
+    **同じ宣言が違う指紋になる** —— そして誰も気づけない。
+
+    ⭐ 暗号用途ではない（改竄ではなく**行き違い**を見る）。∴ FNV-1a 64bit で足りる。
+    ⚠️ **flux 側（`registry.rs::manifest_digest`）と同じ計算**でなければ意味を成さない
+    —— 🚨 ここが 2 箇所に在るのは避けられない（言語が違う）ので、
+    **突き合わせる検体が両側に要る**。
+    """
+    # 🚨 **16 桁に揃えて書く。** flux 側で最初 `0x1000_0000_01b3` と**ゼロを 1 つ多く**
+    # 書いており、⚠️ **下位 32bit は一致したまま**だったので目では気づかなかった。
+    # 捕まえたのは `check-digest-agreement.py`（両側を突き合わせる検体）だけ。
+    basis = 0xCBF2_9CE4_8422_2325
+    prime = 0x0000_0100_0000_01B3
+    mask = 0xFFFF_FFFF_FFFF_FFFF
+    h = basis
+    for b in raw:
+        h ^= b
+        h = (h * prime) & mask
+    return f"{h:016x}"
+
+
+# ⭐ 公開されている FNV-1a 64bit のテストベクタ。🚨 **両側の実装をここに釘付けにする** ——
+# 「相手と一致していればよい」だと、**2 実装が同じように間違ったとき**に気づけない。
+FNV1A_64_VECTORS = {
+    "": "cbf29ce484222325",
+    "a": "af63dc4c8601ec8c",
+    "foobar": "85944171f73967e8",
+}
+
+
 def build_id_of(path: pathlib.Path) -> tuple[str | None, str]:
     """実体に埋まっている build id を返す。`(id, なぜ)` —— **id が None なら理由が入る**。
 
