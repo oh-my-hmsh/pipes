@@ -38,9 +38,9 @@
         "macos-aarch64"
       ],
       "build_ids": {
-        "linux-x86_64": "26bdbd9d6",
-        "windows-x86_64": "26bdbd9d6",
-        "macos-aarch64": "26bdbd9d6"
+        "linux-x86_64": "90b525ecc",
+        "windows-x86_64": "90b525ecc",
+        "macos-aarch64": "90b525ecc"
       }
     },
     {
