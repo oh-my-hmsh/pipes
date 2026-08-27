@@ -8,7 +8,6 @@
   "verbs": [
     {
       "verb": "ffd",
-      "kind": "source",
       "template": "flux-find {query} {path}",
       "args": [
         {
@@ -19,11 +18,23 @@
           "name": "path",
           "type": "path"
         }
-      ],
-      "output": "line"
+      ]
+    },
+    {
+      "verb": "ffd",
+      "template": "flux-find {query}",
+      "args": [
+        {
+          "name": "query",
+          "type": "str"
+        }
+      ]
     }
   ],
-  "category": "source",
+  "category": [
+    "source",
+    "filter"
+  ],
   "usage": "flux-find \"query\" /path --limit 50",
   "platforms": [
     "linux-x86_64",

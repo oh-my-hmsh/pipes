@@ -17,7 +17,7 @@
         "official"
       ],
       "min_hsh_version": "0.1.0",
-      "manifest_digest": "c13822c6ac5d18a7"
+      "manifest_digest": "fc00fd066ac635b7"
     },
     {
       "id": "flux",
@@ -27,7 +27,7 @@
       "author": "takakix2",
       "bin_name": "flux",
       "runtime": "binary",
-      "usage": "flux pipe install flux-eye",
+      "usage": "flux install flux-eye",
       "license": "MIT",
       "tags": [
         "manager",
@@ -43,7 +43,7 @@
         "windows-x86_64": "ed68217e1",
         "macos-aarch64": "ed68217e1"
       },
-      "manifest_digest": "cff2dee212ae878a"
+      "manifest_digest": "0b709e40c332c184"
     },
     {
       "id": "flux-eye",
@@ -71,7 +71,7 @@
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
       },
-      "manifest_digest": "bb52af79ca33c775"
+      "manifest_digest": "6377650b3d2436e1"
     },
     {
       "id": "flux-find",
@@ -90,7 +90,7 @@
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
       },
-      "manifest_digest": "8bd42ff7577175e6"
+      "manifest_digest": "99c091428a7beb2f"
     },
     {
       "id": "flux-grep",
@@ -118,7 +118,7 @@
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
       },
-      "manifest_digest": "0a38374bfe3928e0"
+      "manifest_digest": "21d6f88a51fea6f1"
     },
     {
       "id": "flux-priority",
@@ -137,7 +137,7 @@
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
       },
-      "manifest_digest": "3489411b2fbfea0b"
+      "manifest_digest": "f2808fbbf77d1413"
     },
     {
       "id": "flux-read",
@@ -156,7 +156,7 @@
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
       },
-      "manifest_digest": "38a26aa8728b55c8"
+      "manifest_digest": "f5b81c4c7c5ac988"
     },
     {
       "id": "flux-render",
@@ -176,7 +176,7 @@
         "official"
       ],
       "min_hsh_version": "0.1.0",
-      "manifest_digest": "5325aa6e0e1531db"
+      "manifest_digest": "ede861c9290c10bb"
     },
     {
       "id": "flux-write",
@@ -195,7 +195,7 @@
         "windows-x86_64": "f87282a33",
         "macos-aarch64": "f87282a33"
       },
-      "manifest_digest": "bb1dc05504ea544f"
+      "manifest_digest": "bde17535e8552a6c"
     },
     {
       "id": "json-to-table",
@@ -213,7 +213,7 @@
         "official"
       ],
       "min_hsh_version": "0.1.0",
-      "manifest_digest": "4f3c438724638e62"
+      "manifest_digest": "98fe0c9f069335cf"
     }
   ]
 }

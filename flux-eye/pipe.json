@@ -18,15 +18,13 @@
   "verbs": [
     {
       "verb": "feye",
-      "kind": "source",
       "template": "flux-eye {path} --detail",
       "args": [
         {
           "name": "path",
           "type": "path"
         }
-      ],
-      "output": "line"
+      ]
     }
   ],
   "category": "source",

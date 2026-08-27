@@ -18,7 +18,6 @@
   "verbs": [
     {
       "verb": "fgr",
-      "kind": "source",
       "template": "flux-grep {pattern} {path}",
       "args": [
         {
@@ -29,11 +28,23 @@
           "name": "path",
           "type": "path"
         }
-      ],
-      "output": "line"
+      ]
+    },
+    {
+      "verb": "fgr",
+      "template": "flux-grep {pattern}",
+      "args": [
+        {
+          "name": "pattern",
+          "type": "str"
+        }
+      ]
     }
   ],
-  "category": "source",
+  "category": [
+    "source",
+    "filter"
+  ],
   "platforms": [
     "linux-x86_64",
     "windows-x86_64",

@@ -18,7 +18,13 @@
   "min_hsh_version": "0.1.0",
   "input": "ndjson",
   "output": "ndjson",
-  "category": "transform",
-  "verbs": [],
-  "notes": "transform-kind: this pipe consumes a Flux NDJSON stream on stdin. `verbs` is empty because hermes cannot bind a transform yet -- `register_verb` (hsh-hermes/src/stream/mod.rs) dispatches on the argument types alone and ignores `kind`, so every verb it registers is a *source* (`from_command_inproc`). Declaring one here would bind json-to-table as a constructor and run it with no stdin: recognised, highlighted, completed -- and broken. That is exactly the \"looks supported but isn't\" failure hsh removed in 7047377. Until hermes grows transform verbs (sugar over the existing `.pipe_to`, which works today), reach it as `<source>.pipe_to(\"json-to-table\")` or as a plain command in a shell pipeline."
+  "category": "sink",
+  "verbs": [
+    {
+      "verb": "ftable",
+      "template": "json-to-table",
+      "args": []
+    }
+  ],
+  "notes": "⚠️ 2026-08-27 まで `transform` を名乗っていたが、実測は 403 行中 非 JSON 403 ＝ NDJSON を出さない `sink`。分類の誤りだった。"
 }

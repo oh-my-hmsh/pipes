@@ -8,19 +8,16 @@
   "verbs": [
     {
       "verb": "fread",
-      "kind": "source",
       "template": "flux-read {path}",
       "args": [
         {
           "name": "path",
           "type": "path"
         }
-      ],
-      "output": "line"
+      ]
     },
     {
       "verb": "fread",
-      "kind": "source",
       "template": "flux-read {path} --budget {budget}",
       "args": [
         {
@@ -31,12 +28,10 @@
           "name": "budget",
           "type": "int"
         }
-      ],
-      "output": "line"
+      ]
     },
     {
       "verb": "fread",
-      "kind": "source",
       "template": "flux-read {path} --budget {budget}",
       "args": [
         {
@@ -47,8 +42,7 @@
           "name": "budget",
           "type": "str"
         }
-      ],
-      "output": "line"
+      ]
     }
   ],
   "category": "source",

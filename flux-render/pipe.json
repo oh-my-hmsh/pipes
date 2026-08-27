@@ -20,7 +20,16 @@
   "min_hsh_version": "0.1.0",
   "input": "ndjson",
   "output": "ndjson",
-  "category": "transform",
-  "verbs": [],
-  "notes": "transform-kind: this pipe consumes a Flux NDJSON stream on stdin. `verbs` is empty because hermes cannot bind a transform yet -- `register_verb` (hsh-hermes/src/stream/mod.rs) dispatches on the argument types alone and ignores `kind`, so every verb it registers is a *source* (`from_command_inproc`). Declaring one here would bind flux-render as a constructor and run it with no stdin: recognised, highlighted, completed -- and broken. That is exactly the \"looks supported but isn't\" failure hsh removed in 7047377. Until hermes grows transform verbs (sugar over the existing `.pipe_to`, which works today), reach it as `<source>.pipe_to(\"flux-render\")` or as a plain command in a shell pipeline."
+  "category": [
+    "filter",
+    "sink"
+  ],
+  "verbs": [
+    {
+      "verb": "frender",
+      "template": "flux-render --to md",
+      "args": []
+    }
+  ],
+  "notes": "⚠️ 2026-08-27 まで `transform` / `output: ndjson` を名乗っていたが、実測では `--to md` が markdown、`--from csv --to ndjson` が Flux を作る ＝ 中と外の境目に両向きで立つ。∴ `category` は `[\"filter\",\"sink\"]`。`frender` は既定（`--to md`）＝ sink の側を束ねている。"
 }

@@ -5,7 +5,7 @@
   "bin_name": "flux",
   "version": "0.1.0",
   "description": "Package manager for the flux family. Fetches pipes and the declarations that turn them into dot-verbs.",
-  "usage": "flux pipe install flux-eye",
+  "usage": "flux install flux-eye",
   "author": "takakix2",
   "license": "MIT",
   "runtime": "binary",
@@ -14,8 +14,7 @@
     "official"
   ],
   "verbs": [],
-  "notes": "`verbs` is empty ON PURPOSE, not yet-to-be-written. A dot-verb is for a pipe that carries records through a chain; this is the tool that *installs* those pipes, so it has nothing to put on the wire. It also deliberately does not claim `profile: flux-cli/v1` -- that profile is for producers and transforms, and requires stdout to hold records only, whereas this talks to a person. Install it and type `flux pipe ...`.",
-  "category": "check",
+  "notes": "`verbs` is empty ON PURPOSE, not yet-to-be-written. A dot-verb is for a pipe that carries records through a chain; this is the tool that *installs* those pipes, so it has nothing to put on the wire. It also deliberately does not claim `profile: flux-cli/v1` -- that profile is for producers and transforms, and requires stdout to hold records only, whereas this talks to a person. Install it and type `flux ...`.",
   "platforms": [
     "linux-x86_64",
     "windows-x86_64",
