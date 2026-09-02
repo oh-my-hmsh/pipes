@@ -3,22 +3,19 @@
   "id": "filter-json",
   "name": "filter-json",
   "bin_name": "filter-json",
-  "source": "filter-json/filter-json",
-  "version": "0.1.0",
-  "description": "Filters an NDJSON stream by keyword across all fields, or one named field. A lightweight jq stand-in for Flux pipelines.",
-  "usage": "flux-eye . | filter-json --keyword rust",
+  "version": "0.2.0",
+  "description": "Selects Flux records by naming a field to look in, and projects the fields you want (the required envelope always stays). Not a grep stand-in: whole-record search was removed in 2026-09 because it duplicated `grep -i` and rewrote the bytes.",
+  "usage": "flux-eye . --detail | filter-json --field path --keyword src",
   "author": "takakix2",
   "license": "MIT",
-  "runtime": "python",
+  "runtime": "binary",
   "tags": [
     "filter",
     "json",
     "official"
   ],
   "min_hsh_version": "0.1.0",
-  "input": "ndjson",
-  "output": "ndjson",
-  "category": "filter",
+  "notes": "⚠️ 2026-09-02 に口を作り直した。📏 旧 `--keyword`（全欄）は `grep -i` と同じ答えを返し （sig の path＝実体は cwd に当たって 40/40）、素通しでも json.dumps で書き直して sha256 が変わっていた。⭐ 残したのは grep に書けない側（欄を指す）だけ。🚨 動詞 `fjson <kw>` は `fjson <field> <kw>` になった（旧形は rc=2 で断る）。 🚚 2026-09-02 に Rust へ昇格（#9）。⭐ Python 版は scripts/filter_json.py に残す —— 移植の差分検体が正本として引く。🚨 射影した行の綴りだけ変わった（json.dumps の空白あり → 一族と同じ compact）。素通しは原文のままなので封緘の連続性は壊れない。",
   "verbs": [
     {
       "verb": "fjson",
@@ -27,13 +24,23 @@
     },
     {
       "verb": "fjson",
-      "template": "filter-json --keyword {kw}",
+      "template": "filter-json --field {field} --keyword {kw}",
       "args": [
+        {
+          "name": "field",
+          "type": "str"
+        },
         {
           "name": "kw",
           "type": "str"
         }
       ]
     }
+  ],
+  "category": "filter",
+  "platforms": [
+    "linux-x86_64",
+    "windows-x86_64",
+    "macos-aarch64"
   ]
 }

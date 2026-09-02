@@ -4,12 +4,12 @@
     {
       "id": "filter-json",
       "name": "filter-json",
-      "version": "0.1.0",
-      "description": "Filters an NDJSON stream by keyword across all fields, or one named field. A lightweight jq stand-in for Flux pipelines.",
+      "version": "0.2.0",
+      "description": "Selects Flux records by naming a field to look in, and projects the fields you want (the required envelope always stays). Not a grep stand-in: whole-record search was removed in 2026-09 because it duplicated `grep -i` and rewrote the bytes.",
       "author": "takakix2",
       "bin_name": "filter-json",
-      "runtime": "python",
-      "usage": "flux-eye . | filter-json --keyword rust",
+      "runtime": "binary",
+      "usage": "flux-eye . --detail | filter-json --field path --keyword src",
       "license": "MIT",
       "tags": [
         "filter",
@@ -17,7 +17,17 @@
         "official"
       ],
       "min_hsh_version": "0.1.0",
-      "manifest_digest": "fc00fd066ac635b7"
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64",
+        "macos-aarch64"
+      ],
+      "build_ids": {
+        "linux-x86_64": "06535d983",
+        "windows-x86_64": "06535d983",
+        "macos-aarch64": "06535d983"
+      },
+      "manifest_digest": "6b9345959837a6cb"
     },
     {
       "id": "flux",
@@ -161,11 +171,11 @@
     {
       "id": "flux-render",
       "name": "flux-render",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Universal format converter. Renders Flux NDJSON as JSON, Markdown, CSV or YAML (and back) -- the interchange layer with the outside world.",
       "author": "takakix2",
       "bin_name": "flux-render",
-      "runtime": "python",
+      "runtime": "binary",
       "usage": "flux-eye /vault | flux-render --to md",
       "license": "MIT",
       "tags": [
@@ -176,7 +186,17 @@
         "official"
       ],
       "min_hsh_version": "0.1.0",
-      "manifest_digest": "ede861c9290c10bb"
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64",
+        "macos-aarch64"
+      ],
+      "build_ids": {
+        "linux-x86_64": "06535d983",
+        "windows-x86_64": "06535d983",
+        "macos-aarch64": "06535d983"
+      },
+      "manifest_digest": "98e7c493bb8ded80"
     },
     {
       "id": "flux-write",
@@ -200,11 +220,11 @@
     {
       "id": "json-to-table",
       "name": "json-to-table",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Renders an NDJSON stream as a formatted ASCII table, collecting columns from the keys it sees. Human-readable end of a pipeline.",
       "author": "takakix2",
       "bin_name": "json-to-table",
-      "runtime": "python",
+      "runtime": "binary",
       "usage": "flux-eye . | json-to-table",
       "license": "MIT",
       "tags": [
@@ -213,7 +233,17 @@
         "official"
       ],
       "min_hsh_version": "0.1.0",
-      "manifest_digest": "98fe0c9f069335cf"
+      "platforms": [
+        "linux-x86_64",
+        "windows-x86_64",
+        "macos-aarch64"
+      ],
+      "build_ids": {
+        "linux-x86_64": "06535d983",
+        "windows-x86_64": "06535d983",
+        "macos-aarch64": "06535d983"
+      },
+      "manifest_digest": "e6ddaef93943653c"
     }
   ]
 }

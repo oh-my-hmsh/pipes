@@ -3,22 +3,19 @@
   "id": "json-to-table",
   "name": "json-to-table",
   "bin_name": "json-to-table",
-  "source": "json-to-table/json-to-table",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Renders an NDJSON stream as a formatted ASCII table, collecting columns from the keys it sees. Human-readable end of a pipeline.",
   "usage": "flux-eye . | json-to-table",
   "author": "takakix2",
   "license": "MIT",
-  "runtime": "python",
+  "runtime": "binary",
   "tags": [
     "display",
     "table",
     "official"
   ],
   "min_hsh_version": "0.1.0",
-  "input": "ndjson",
-  "output": "ndjson",
-  "category": "sink",
+  "notes": "⚠️ 2026-08-27 まで `transform` を名乗っていたが、実測は 403 行中 非 JSON 403 ＝ NDJSON を出さない `sink`。分類の誤りだった。 🚚 2026-09-02 に Rust へ昇格（#9）。⭐ Python 版は scripts/json_to_table.py に残す —— 移植の差分検体が正本として引く。🚨 表はバイト単位で同一（罫線・桁・畳みの文言まで）。綴りを変えた箇所は 1 つも無い。",
   "verbs": [
     {
       "verb": "ftable",
@@ -26,5 +23,10 @@
       "args": []
     }
   ],
-  "notes": "⚠️ 2026-08-27 まで `transform` を名乗っていたが、実測は 403 行中 非 JSON 403 ＝ NDJSON を出さない `sink`。分類の誤りだった。"
+  "category": "sink",
+  "platforms": [
+    "linux-x86_64",
+    "windows-x86_64",
+    "macos-aarch64"
+  ]
 }
