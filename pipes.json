@@ -24,8 +24,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "06535d983",
-        "windows-x86_64": "06535d983",
-        "macos-aarch64": "06535d983"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "6b9345959837a6cb"
     },
@@ -50,8 +50,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "0b709e40c332c184"
     },
@@ -78,8 +78,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "6377650b3d2436e1"
     },
@@ -97,8 +97,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "99c091428a7beb2f"
     },
@@ -125,8 +125,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "21d6f88a51fea6f1"
     },
@@ -144,8 +144,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "f2808fbbf77d1413"
     },
@@ -163,15 +163,15 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "f5b81c4c7c5ac988"
     },
     {
       "id": "flux-render",
       "name": "flux-render",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "description": "Universal format converter. Renders Flux NDJSON as JSON, Markdown, CSV or YAML (and back) -- the interchange layer with the outside world.",
       "author": "takakix2",
       "bin_name": "flux-render",
@@ -193,10 +193,10 @@
       ],
       "build_ids": {
         "linux-x86_64": "06535d983",
-        "windows-x86_64": "06535d983",
-        "macos-aarch64": "06535d983"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
-      "manifest_digest": "98e7c493bb8ded80"
+      "manifest_digest": "b2caa0f36af7a384"
     },
     {
       "id": "flux-write",
@@ -212,10 +212,10 @@
       ],
       "build_ids": {
         "linux-x86_64": "0f81efd21",
-        "windows-x86_64": "0f81efd21",
-        "macos-aarch64": "0f81efd21"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
-      "manifest_digest": "bde17535e8552a6c"
+      "manifest_digest": "256b043dfee789cd"
     },
     {
       "id": "json-to-table",
@@ -240,8 +240,8 @@
       ],
       "build_ids": {
         "linux-x86_64": "06535d983",
-        "windows-x86_64": "06535d983",
-        "macos-aarch64": "06535d983"
+        "windows-x86_64": "a4b8200f0",
+        "macos-aarch64": "a4b8200f0"
       },
       "manifest_digest": "e6ddaef93943653c"
     }

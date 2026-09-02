@@ -3,7 +3,7 @@
   "id": "flux-render",
   "name": "flux-render",
   "bin_name": "flux-render",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Universal format converter. Renders Flux NDJSON as JSON, Markdown, CSV or YAML (and back) -- the interchange layer with the outside world.",
   "usage": "flux-eye /vault | flux-render --to md",
   "author": "takakix2",
@@ -17,7 +17,7 @@
     "official"
   ],
   "min_hsh_version": "0.1.0",
-  "notes": "⚠️ 2026-08-27 まで `transform` / `output: ndjson` を名乗っていたが、実測では `--to md` が markdown、`--from csv --to ndjson` が Flux を作る ＝ 中と外の境目に両向きで立つ。∴ `category` は `[\"filter\",\"sink\"]`。`frender` は既定（`--to md`）＝ sink の側を束ねている。 🚚 2026-09-02 に Rust へ昇格（#9）。⭐ Python 版は scripts/flux_render.py に残す（差分検体が正本として引く）。🚨 綴りを変えたのは --to ndjson / --to json だけ（json.dumps の空白 → 一族と同じ compact）。csv と md はバイト単位で同一（CRLF まで）。⚠️ 既存の欠陥は写した：--wrap は何もしない／--to md は datetime.now() で毎回変わる／--from json,csv は壊れた入力でも rc=0。",
+  "notes": "⚠️ 2026-08-27 まで `transform` / `output: ndjson` を名乗っていたが、実測では `--to md` が markdown、`--from csv --to ndjson` が Flux を作る ＝ 中と外の境目に両向きで立つ。∴ `category` は `[\"filter\",\"sink\"]`。`frender` は既定（`--to md`）＝ sink の側を束ねている。 🚚 2026-09-02 に Rust へ昇格（#9）。⭐ Python 版は scripts/flux_render.py に残す（差分検体が正本として引く）。🚨 綴りを変えたのは --to ndjson / --to json だけ（json.dumps の空白 → 一族と同じ compact）。csv と md はバイト単位で同一（CRLF まで）。⚠️ 既存の欠陥は写した：--wrap は何もしない／--to md は datetime.now() で毎回変わる／--from json,csv は壊れた入力でも rc=0。 🚚 2026-09-02 に #40 を直した：--wrap は未実装だと**名乗る**（受理して黙らない）／--timestamp を配線（Python は引数を持っていたのに渡していなかった）／--from json,csv は入力が在ったのに 1 件も作れなければ rc=1（#16 の線に揃えた・空入力は今も rc=0）。⚠️ 訂正: --to md の時刻は sink モードにだけ在り §2.5 は掛からない（--to ndjson/json/csv は決定的であることを実測）。",
   "verbs": [
     {
       "verb": "frender",
