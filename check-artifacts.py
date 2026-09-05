@@ -79,6 +79,26 @@ import sys
 
 from flux_artifacts import artifact_path, build_id_of, pipe_dirs
 
+# ── 出口を UTF-8 に釘付けする ────────────────────────────────────────────
+#
+# 🚨 **これが無いと、緑のときに限って赤になる。** 📏 実測（2026-09-05）:
+#   `PYTHONIOENCODING=cp932` で撃つと rc=0 → **rc=1** に反転する。落ちる場所は
+#   数え終えたあとの `print("✅ …")` ＝ **測り切ってから、そう言おうとして死ぬ**。
+#   ⭐ CI は ubuntu なので出ない。**手で撃つ台**（dyna の cp932 コンソール）で出る。
+#
+# ⚠️ `sys.stderr` は既定が `backslashreplace` なので**落ちない** —— 死ぬのは
+#    `strict` の `stdout` だけ。∴ 要るのは「stdout に非 ASCII を刷る物」だけで、
+#    横断ツール全部ではない。
+#
+# 🚫 呼び手の env に頼らない: `PYTHONUTF8=1` は立て忘れれば同じ穴が開き、
+#    `PYTHONIOENCODING` は `open()` に効かず、`chcp 65001` は**コンソールの属性**
+#    なのでプロセスが死んでも残る。
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
+    except (AttributeError, OSError):
+        pass  # ⭐ 差し替えられている / 使えない口なら、そのまま進む（検査は止めない）
+
 ROOT = pathlib.Path(__file__).parent
 
 PT_INTERP = 3

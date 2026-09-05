@@ -21,6 +21,17 @@ import sys
 
 from flux_artifacts import FNV1A_64_VECTORS, manifest_digest, pipe_dirs
 
+# ── 出口を UTF-8 に釘付けする（理由は `check-artifacts.py` の同じ節）────────
+#
+# 🚨 📏 実測（2026-09-05）: `PYTHONIOENCODING=cp932` で rc=0 → **rc=1** に反転する。
+#    ⭐ ここは特に悪い —— この検査の役目は「**測れないなら緑にしない**」なのに、
+#    **測れたのに赤を名乗る**という逆向きの嘘をつく。
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
+    except (AttributeError, OSError):
+        pass  # ⭐ 差し替えられている / 使えない口なら、そのまま進む（検査は止めない）
+
 ROOT = pathlib.Path(__file__).parent
 
 
